@@ -1,40 +1,80 @@
-﻿using SophieTravelManagement.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SophieTravelManagement.Domain.Exceptions;
+using SophieTravelManagement.Domain.ValueObjects;
+using SophieTravelManagement.Shared.Abstraction.Domain;
 
-namespace SophieTravelManagement.Domain.Entities
+namespace SophieTravelManagement.Domain.Entities;
+
+public class TravelerCheckList : AggregateRoot<TravelerCheckListId>
 {
-    public class TravelerCheckList
+    public TravelerCheckListId Id { get; private set; }
+    private TravelerCheckListName _name;
+    private Destination _destination;
+
+
+    private readonly LinkedList<TravelerItem> _items = new();
+
+    public TravelerCheckList()
     {
-        public TravelerCheckListId Id { get; private set; }
-        private TravelerCheckListName _name;
-        private Destination _destination;
+
+    }
+    internal TravelerCheckList(TravelerCheckListId id,
+        TravelerCheckListName name,
+        Destination destination)
+    {
+        _destination = destination;
+        _name = name;
+        Id = id;
+    }
+
+    private TravelerCheckList(TravelerCheckListId id,
+        TravelerCheckListName name,
+        Destination destination,
+        LinkedList<TravelerItem> items) : this(id, name, destination)
+    {
+        _items = items;
+    }
 
 
-        private readonly LinkedList<TravelerItem> _items = null;
 
-        public TravelerCheckList()
+    public void AddItem(TravelerItem item)
+    {
+        var alreadyExists = _items.Any(i => i.Name == item.Name);
+
+        if (alreadyExists)
+            throw new TravelerItemAlreadyExistExceptin(_name.Name, item.Name);
+
+        _items.AddLast(item);
+    }
+
+
+    public void AddItems(List<TravelerItem> items)
+    {
+        foreach (var item in items)
         {
+            AddItem(item);
+        }
+    }
 
-        }
-        internal TravelerCheckList(TravelerCheckListId id,
-            TravelerCheckListName name,
-            Destination destination)
-        {
-            _destination = destination;
-            _name = name;
-            Id = id;
-        }
+    private TravelerItem GetItem(string itemName)
+    {
+        var item = _items.SingleOrDefault(i => i.Name == itemName);
+        if (item == null)
+            throw new TravelerItemNotFoundException(itemName);
 
-        private TravelerCheckList(TravelerCheckListId id,
-            TravelerCheckListName name,
-            Destination destination,
-            LinkedList<TravelerItem> items) : this(id, name, destination) 
-        {
-            _items = items;
-        }
+        return item;
+    }
+
+    public void TakeItem(string itemName)
+    {
+        var item = GetItem(itemName);
+        var travelerItem = item with { IsTaken = true };
+
+        _items.Find(item)!.Value = travelerItem;
+    }
+
+    public void RemoveItem(string itemName)
+    {
+        var item = GetItem(itemName);
+        _items.Remove(item);
     }
 }
