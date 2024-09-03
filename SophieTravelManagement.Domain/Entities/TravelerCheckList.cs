@@ -1,4 +1,5 @@
-﻿using SophieTravelManagement.Domain.Exceptions;
+﻿using SophieTravelManagement.Domain.Events;
+using SophieTravelManagement.Domain.Exceptions;
 using SophieTravelManagement.Domain.ValueObjects;
 using SophieTravelManagement.Shared.Abstraction.Domain;
 
@@ -44,6 +45,7 @@ public class TravelerCheckList : AggregateRoot<TravelerCheckListId>
             throw new TravelerItemAlreadyExistExceptin(_name.Name, item.Name);
 
         _items.AddLast(item);
+        AddEvent(new TravelerItemAddedEvent(this, item));
     }
 
 
@@ -70,11 +72,13 @@ public class TravelerCheckList : AggregateRoot<TravelerCheckListId>
         var travelerItem = item with { IsTaken = true };
 
         _items.Find(item)!.Value = travelerItem;
+        AddEvent(new TravelerItemTackenEvent(this, item));
     }
 
     public void RemoveItem(string itemName)
     {
         var item = GetItem(itemName);
         _items.Remove(item);
+        AddEvent(new TravelerItemRemovedEvent(this, item));
     }
 }

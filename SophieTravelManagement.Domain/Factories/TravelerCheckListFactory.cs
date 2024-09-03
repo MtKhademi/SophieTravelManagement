@@ -18,10 +18,16 @@ internal class TravelerCheckListFactory : ITravelerCheckListFactory
     public TravelerCheckList Create(TravelerCheckListId id, TravelerCheckListName name, Destination destination)
         => new(id, name, destination);
 
-    public TravelerCheckList CreateWithDefaultItems(TravelerCheckList id, TravelerCheckListName name, Destination destination, TravelDays days, Gender gender, Temperature temperature)
+    public TravelerCheckList CreateWithDefaultItems(TravelerCheckListId id, TravelerCheckListName name, Destination destination, TravelDays days, Gender gender, Temperature temperature)
     {
-        //var data = new PolicyData(days, gender, temperature, destination);
+        var policyData = new PolicyData(days, gender, temperature, destination);
+        var applicationPolicies = _policies.Where(p => p.IsApplicable(policyData));
 
-        return null;
+        var items = applicationPolicies.SelectMany(p => p.GenerateItems(policyData)).ToList();
+        var travelerCheckingList = Create(id, name, destination);
+
+        travelerCheckingList.AddItems(items);
+
+        return travelerCheckingList;
     }
 }
