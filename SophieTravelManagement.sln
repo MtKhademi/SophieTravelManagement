@@ -9,7 +9,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{5DF433
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SophieTravelManagement.Shared.Abstraction", "SophieTravelManagement.Shared.Abstraction\SophieTravelManagement.Shared.Abstraction.csproj", "{70EC90A6-E274-4C04-B32D-B04508943BB3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SophieTravelManagement.Application", "SophieTravelManagement.Application\SophieTravelManagement.Application.csproj", "{795EB1F7-5C70-47BB-A0A7-DAFD4E7D9B50}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SophieTravelManagement.Application", "SophieTravelManagement.Application\SophieTravelManagement.Application.csproj", "{795EB1F7-5C70-47BB-A0A7-DAFD4E7D9B50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SophieTravelManagement.Api", "SophieTravelManagement.Api\SophieTravelManagement.Api.csproj", "{44DA9DBC-B6AE-4302-9003-9398D0E1C3C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SophieTravelManagement.Shared", "SophieTravelManagement.Shared\SophieTravelManagement.Shared.csproj", "{143EB864-05E9-4662-9863-E6A4089B7773}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SophieTravelManagement.Infrastructure", "SophieTravelManagement.Infrastructure\SophieTravelManagement.Infrastructure.csproj", "{43FFB444-3DA5-4008-A968-79515E1F1CB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,12 +35,25 @@ Global
 		{795EB1F7-5C70-47BB-A0A7-DAFD4E7D9B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{795EB1F7-5C70-47BB-A0A7-DAFD4E7D9B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{795EB1F7-5C70-47BB-A0A7-DAFD4E7D9B50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44DA9DBC-B6AE-4302-9003-9398D0E1C3C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44DA9DBC-B6AE-4302-9003-9398D0E1C3C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44DA9DBC-B6AE-4302-9003-9398D0E1C3C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44DA9DBC-B6AE-4302-9003-9398D0E1C3C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{143EB864-05E9-4662-9863-E6A4089B7773}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143EB864-05E9-4662-9863-E6A4089B7773}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143EB864-05E9-4662-9863-E6A4089B7773}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143EB864-05E9-4662-9863-E6A4089B7773}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43FFB444-3DA5-4008-A968-79515E1F1CB0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43FFB444-3DA5-4008-A968-79515E1F1CB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43FFB444-3DA5-4008-A968-79515E1F1CB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43FFB444-3DA5-4008-A968-79515E1F1CB0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{70EC90A6-E274-4C04-B32D-B04508943BB3} = {5DF433B4-4D7A-4117-A2F7-E744A9688C06}
+		{143EB864-05E9-4662-9863-E6A4089B7773} = {5DF433B4-4D7A-4117-A2F7-E744A9688C06}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {365BC8C3-1D45-4A75-8322-A9A4321D6EBC}
