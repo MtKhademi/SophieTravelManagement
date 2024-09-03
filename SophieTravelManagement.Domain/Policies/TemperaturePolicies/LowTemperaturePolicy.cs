@@ -1,6 +1,6 @@
 ﻿using SophieTravelManagement.Domain.ValueObjects;
 
-namespace SophieTravelManagement.Domain.Policies.Temperature;
+namespace SophieTravelManagement.Domain.Policies.TemperaturePolicies;
 
 internal class LowTemperaturePolicy : ITravelerItemPolicy
 {
