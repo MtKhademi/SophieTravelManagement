@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SophieTravelManagement.Domain.Entities;
 using SophieTravelManagement.Domain.ValueObjects;
+using SophieTravelManagement.Infrastructure.EF.Config;
 
 namespace SophieTravelManagement.Infrastructure.EF.Contexts;
 

@@ -10,11 +10,16 @@ namespace SophieTravelManagement.Application.Commands.Handlers;
 internal class CreateTravelerCheckListWithItemsHandler(
     ITravelerCheckListRepository repository,
     ITravelerCheckListFactory factory,
-    IWeatherService weatherService) : ICommandHandler<CreateTravelerCheckListWithItems>
+    IWeatherService weatherService,
+    ITravelerCheckListReadService travelerCheckListReadService) : ICommandHandler<CreateTravelerCheckListWithItems>
 {
     public async Task HandleAsync(CreateTravelerCheckListWithItems command)
     {
         var (id, name, days, gender, destinationWriteModel) = command;
+
+
+        if (await travelerCheckListReadService.ExistByNameAsync(name))
+            throw new TravelerCheckListAlreadyExistException(name);
 
         var destination = new Destination(destinationWriteModel.City, destinationWriteModel.Country);
         var weather = await weatherService.GetWeatherAsync(destination);

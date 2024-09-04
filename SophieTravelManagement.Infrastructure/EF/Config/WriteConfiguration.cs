@@ -11,7 +11,11 @@ internal class WriteConfiguration : IEntityTypeConfiguration<TravelerCheckList>,
 {
     public void Configure(EntityTypeBuilder<TravelerItem> builder)
     {
-        throw new NotImplementedException();
+        builder.Property<Guid>("Id");
+        builder.Property(p => p.Name);
+        builder.Property(p => p.Quantity);
+        builder.Property(p => p.IsTaken);
+        builder.ToTable("TravelerItems");
     }
 
     public void Configure(EntityTypeBuilder<TravelerCheckList> builder)
@@ -24,6 +28,19 @@ internal class WriteConfiguration : IEntityTypeConfiguration<TravelerCheckList>,
         var packingListNameConvertor = new ValueConverter<TravelerCheckListName, string>(
             p => p.ToString(), p => new TravelerCheckListName(p));
 
-        builder.
+        builder.Property(p => p.Id)
+            .HasConversion(id => id.Value, id => new TravelerCheckListId(id));
+
+        builder.Property(typeof(Destination),"_destination")
+            .HasConversion(destinationConvertor)
+            .HasColumnName("Destination");
+
+        builder.Property(typeof(TravelerCheckListName), "_name")
+            .HasConversion(packingListNameConvertor)
+            .HasColumnName("Name");
+
+        builder.HasMany(typeof(TravelerItem), "_items");
+
+        builder.ToTable("TravelerCheckList");
     }
 }
