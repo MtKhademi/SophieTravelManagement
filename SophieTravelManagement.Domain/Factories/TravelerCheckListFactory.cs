@@ -5,7 +5,7 @@ using SophieTravelManagement.Domain.ValueObjects;
 
 namespace SophieTravelManagement.Domain.Factories;
 
-internal class TravelerCheckListFactory : ITravelerCheckListFactory
+public class TravelerCheckListFactory : ITravelerCheckListFactory
 {
 
     private readonly IEnumerable<ITravelerItemPolicy> _policies;

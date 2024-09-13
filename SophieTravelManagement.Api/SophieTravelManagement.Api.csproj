@@ -10,4 +10,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SophieTravelManagement.Application\SophieTravelManagement.Application.csproj" />
+    <ProjectReference Include="..\SophieTravelManagement.Shared.Abstraction\SophieTravelManagement.Shared.Abstraction.csproj" />
+  </ItemGroup>
+
 </Project>
